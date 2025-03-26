@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Lista de Tarefas</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-input placeholder="Nova Tarefa" [(ngModel)]="newTask"></ion-input>
+  <ion-button expand="full" (click)="addTask()">Adicionar</ion-button>
+
+  <ion-list>
+    <ion-item *ngFor="let task of tasks | async">
+      {{ task.task }}
+      <ion-button fill="clear" color="danger" (click)="deleteTask(task.id)">
+        Excluir
+      </ion-button>
+    </ion-item>
+  </ion-list>
+</ion-content>
