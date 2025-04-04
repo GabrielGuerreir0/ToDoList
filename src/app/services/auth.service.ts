@@ -18,7 +18,19 @@ export class AuthService {
   }
 
   async login(email: string, password: string) {
-    return signInWithEmailAndPassword(this.auth, email, password);
+    try {
+      const userCredential = await signInWithEmailAndPassword(
+        this.auth,
+        email,
+        password
+      );
+      console.log('Usuário logado com sucesso:', userCredential.user);
+      console.log('Token de autenticação:', userCredential);
+      return userCredential;
+    } catch (error) {
+      console.error('Erro de login', error);
+      throw error;
+    }
   }
 
   async logout() {
